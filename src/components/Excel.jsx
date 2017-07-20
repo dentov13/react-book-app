@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/Excel.css';
 
 var Excel = React.createClass({
   displayName: 'Excel',
