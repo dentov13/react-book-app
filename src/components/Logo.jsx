@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
-import '../css/Logo.css';
+import React from 'react';
+import '../css/components/Logo.css';
 
-class Logo extends Component {
-  render() {
-   return <div className="Logo"/>;
-  }
-}
+let Logo = () => <div className="Logo"/>;
 
-export default Logo;
+export default Logo
