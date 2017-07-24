@@ -1,6 +1,5 @@
 import Logo from './components/Logo';
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import Whinepad from './components/Whinepad';
 import schema from './schema';
 import './App.css';

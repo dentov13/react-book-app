@@ -2,7 +2,8 @@ import Button from './Button';
 import Dialog from './Dialog';
 import Excel from './Excel';
 import Form from './Form';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import '../css/components/Whinepad.css';
 
 class Whinepad extends Component {

@@ -1,6 +1,7 @@
 import FormInput from './FormInput';
 import Rating from './Rating';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import '../css/components/Form.css';
 
 class Form extends Component {

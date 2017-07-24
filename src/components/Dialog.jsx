@@ -1,5 +1,6 @@
 import Button from './Button';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import '../css/components/Dialog.css';
 
 class Dialog extends Component {
