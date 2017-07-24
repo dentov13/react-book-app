@@ -23,8 +23,8 @@ class Rating extends Component {
 
   setRating(rating) {
     this.setState({
-      tmpRating: rating,
       rating: rating,
+      tmpRating: rating
     });
   }
 
