@@ -1,9 +1,26 @@
-import Button from './Button';
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import Button from './Button';
 import '../css/components/Dialog.css';
 
+type Props = {
+  header: string,
+  confirmLabel: string,
+  modal: boolean,
+  onAction: Function,
+  hasCancel: ?boolean,
+  children?: Array<any>,
+};
+
 class Dialog extends Component {
+
+  props: Props;
+  
+  static defaultProps = {
+    confirmLabel: 'ok',
+    modal: false,
+    onAction: (_) => {},
+    hasCancel: true,
+  };
 
   componentWillUnmount() {
     document.body.classList.remove('DialogModalOpen');
@@ -40,20 +57,5 @@ class Dialog extends Component {
     );
   }
 }
-
-Dialog.propTypes = {
-  header: PropTypes.string.isRequired,
-  confirmLabel: PropTypes.string,
-  modal: PropTypes.bool,
-  onAction: PropTypes.func,
-  hasCancel: PropTypes.bool,
-};
-
-Dialog.defaultProps = {
-  confirmLabel: 'ok',
-  modal: false,
-  onAction: () => {},
-  hasCancel: true,
-};
 
 export default Dialog

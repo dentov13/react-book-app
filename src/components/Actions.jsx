@@ -1,8 +1,14 @@
+/* @flow */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/components/Actions.css';
 
-const Actions = props =>  
+type Props = {
+  onAction: Function
+};
+
+const Actions = (props: Props) =>  
   <div className="Actions">
     <span 
       tabIndex="0"

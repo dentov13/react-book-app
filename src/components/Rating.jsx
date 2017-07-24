@@ -1,10 +1,29 @@
 import classNames from 'classnames';
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import '../css/components/Rating.css';
 
+type Props = {
+  defaultValue: number,
+  readonly: boolean,
+  max: number,
+};
+
+type State = {
+  rating: number,
+  tmpRating: number,
+};
+
 class Rating extends Component {
-    
+  
+  props: Props;
+  state: State;
+  
+  static defaultProps = {
+    defaultValue: 0,
+    max: 5,
+    readonly: false,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -69,16 +88,5 @@ class Rating extends Component {
     );
   }  
 }
-
-Rating.propTypes = {
-  defaultValue: PropTypes.number,
-  readonly: PropTypes.bool,
-  max: PropTypes.number,
-};
-
-Rating.defaultProps = {
-  defaultValue: 0,
-  max: 5,
-};
 
 export default Rating

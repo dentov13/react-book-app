@@ -1,3 +1,6 @@
+/* @flow */
+
+import CRUDStore from './flux-imm/CRUDStore';
 import Logo from './components/Logo';
 import React, {Component} from 'react';
 import Whinepad from './components/Whinepad';
@@ -6,21 +9,15 @@ import './App.css';
 
 class App extends Component {
   render() {
-    let data = JSON.parse(localStorage.getItem('data'));
 
-    // default example data, read from the schema
-    if (!data) {
-      data = {};
-      schema.forEach((item) => data[item.id] = item.sample);
-      data = [data];
-    }
-
+    CRUDStore.init(schema);
+    
     return (
       <div>
         <div className="app-header">
           <Logo/> Welcome to Whinepad!
         </div>
-        <Whinepad schema={schema} initialData={data} />
+        <Whinepad />
       </div>
     );
   }

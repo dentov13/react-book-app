@@ -1,11 +1,24 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+
+type Props = {
+  id?: string,
+  defaultValue?: string,
+  options: Array<string>,
+};
+
+type State = {
+  value: string,
+};
+
 
 class Suggest extends Component {
+
+  props: Props;
+  state: State;
   
   constructor(props) {
     super(props);
-    this.state = {value: props.defaultValue};
+    this.state = {value: props.defaultValue || ''};
   }
   
   getValue() {
@@ -30,11 +43,5 @@ class Suggest extends Component {
     );
   }
 }
-
-Suggest.propTypes = {
-  id: PropTypes.string,
-  defaultValue: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string),
-};
 
 export default Suggest
