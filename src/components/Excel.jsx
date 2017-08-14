@@ -13,27 +13,27 @@ import classNames from 'classnames';
 import invariant from 'invariant';
 import '../css/components/Excel.css'
 
-type EditState = {
-  row: number,
-  key: string,
-};
+// type EditState = {
+//   row: number,
+//   key: string,
+// };
+//
+// type DialogState = {
+//   idx: number,
+//   type: string,
+// };
 
-type DialogState = {
-  idx: number,
-  type: string,
-};
-
-type State = {
-  data: Immutable.List<Object>,
-  sortby: ?string,
-  descending: boolean,
-  edit: ?EditState,
-  dialog: ?DialogState,
-};
+// type State = {
+//   data: Immutable.List<Object>,
+//   sortby: ?string,
+//   descending: boolean,
+//   edit: ?EditState,
+//   dialog: ?DialogState,
+// };
 
 class Excel extends Component {
-  state: State;
-  schema: Array<Object>;
+  // state: State;
+  // schema: Array<Object>;
   constructor() {
     super();
     this.state = {
@@ -80,11 +80,11 @@ class Excel extends Component {
       edit: null,
     });
   }
-  
+
   _actionClick(rowidx: number, action: string) {
     this.setState({dialog: {type: action, idx: rowidx}});
   }
-  
+
   _deleteConfirmationClick(action: string) {
     this.setState({dialog: null});
     if (action === 'dismiss') {
@@ -94,7 +94,7 @@ class Excel extends Component {
     invariant(typeof index === 'number', 'Unexpected dialog state');
     CRUDActions.delete(index);
   }
-  
+
   _saveDataDialog(action: string) {
     this.setState({dialog: null});
     if (action === 'dismiss') {
@@ -113,7 +113,7 @@ class Excel extends Component {
       </div>
     );
   }
-  
+
   _renderDialog() {
     if (!this.state.dialog) {
       return null;
@@ -130,14 +130,14 @@ class Excel extends Component {
         throw Error(`Unexpected dialog type ${type}`);
     }
   }
-  
+
   _renderDeleteDialog() {
     const index = this.state.dialog && this.state.dialog.idx;
     invariant(typeof index === 'number', 'Unexpected dialog state');
     const first = this.state.data.get(index);
     const nameguess = first[Object.keys(first)[0]];
     return (
-      <Dialog 
+      <Dialog
         modal={true}
         header="Confirm deletion"
         confirmLabel="Delete"
@@ -147,12 +147,12 @@ class Excel extends Component {
       </Dialog>
     );
   }
-  
+
   _renderFormDialog(readonly: ?boolean) {
     const index = this.state.dialog && this.state.dialog.idx;
     invariant(typeof index === 'number', 'Unexpected dialog state');
     return (
-      <Dialog 
+      <Dialog
         modal={true}
         header={readonly ? 'Item info' : 'Edit item'}
         confirmLabel={readonly ? 'ok' : 'Save'}
@@ -164,9 +164,9 @@ class Excel extends Component {
           recordId={index}
           readonly={!!readonly} />
       </Dialog>
-    ); 
+    );
   }
-  
+
   _renderTable() {
     return (
       <table>
@@ -181,7 +181,7 @@ class Excel extends Component {
                 title += this.state.descending ? ' \u2191' : ' \u2193';
               }
               return (
-                <th 
+                <th
                   className={`schema-${item.id}`}
                   key={item.id}
                   onClick={this._sort.bind(this, item.id)}
@@ -216,14 +216,14 @@ class Excel extends Component {
                     content = <Rating readonly={true} defaultValue={Number(content)} />;
                   }
                   return (
-                    <td 
+                    <td
                       className={classNames({
                         [`schema-${schema.id}`]: true,
                         'ExcelEditable': !isRating,
                         'ExcelDataLeft': schema.align === 'left',
                         'ExcelDataRight': schema.align === 'right',
                         'ExcelDataCenter': schema.align !== 'left' && schema.align !== 'right',
-                      })} 
+                      })}
                       key={idx}
                       data-row={rowidx}
                       data-key={schema.id}>

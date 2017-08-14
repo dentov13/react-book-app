@@ -6,18 +6,18 @@ import Rating from './Rating';
 import React, {Component} from 'react';
 import '../css/components/Form.css'
 
-import type {FormInputField, FormInputFieldValue} from './FormInput';
-
-type Props = {
-  readonly?: boolean,
-  recordId: ?number,
-};
+// import type {FormInputField, FormInputFieldValue} from './FormInput';
+//
+// type Props = {
+//   readonly?: boolean,
+//   recordId: ?number,
+// };
 
 class Form extends Component {
-  
-  fields: Array<Object>;
-  initialData: ?Object;
-  
+
+  // fields: Array<Object>;
+  // initialData: ?Object;
+
   constructor(props: Props) {
     super(props);
     this.fields = CRUDStore.getSchema();
@@ -25,15 +25,15 @@ class Form extends Component {
       this.initialData = CRUDStore.getRecord(this.props.recordId);
     }
   }
-  
+
   getData(): Object {
     let data: Object = {};
-    this.fields.forEach((field: FormInputField) => 
+    this.fields.forEach((field: FormInputField) =>
       data[field.id] = this.refs[field.id].getValue()
     );
     return data;
   }
-  
+
   render() {
     return (
       <form className="Form">{this.fields.map((field: FormInputField) => {

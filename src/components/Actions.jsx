@@ -4,23 +4,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/components/Actions.css';
 
-type Props = {
-  onAction: Function
-};
+// type Props = {
+//   onAction: Function
+// };
 
-const Actions = (props: Props) =>  
+const Actions = (props: Props) =>
   <div className="Actions">
-    <span 
+    <span
       tabIndex="0"
       className="ActionsInfo"
       title="More info"
       onClick={props.onAction.bind(null, 'info')}>&#8505;</span>
-    <span 
-      tabIndex="0" 
-      className="ActionsEdit" 
+    <span
+      tabIndex="0"
+      className="ActionsEdit"
       title="Edit"
       onClick={props.onAction.bind(null, 'edit')}>&#10000;</span>
-    <span 
+    <span
       tabIndex="0"
       className="ActionsDelete"
       title="Delete"

@@ -5,27 +5,27 @@ import React, {Component} from 'react';
 import Suggest from './Suggest';
 import '../css/components/FormInput.css'
 
+//
+// type FormInputFieldType = 'year' | 'suggest' | 'rating' | 'text' | 'input';
+//
+// export type FormInputFieldValue = string | number;
 
-type FormInputFieldType = 'year' | 'suggest' | 'rating' | 'text' | 'input';
-
-export type FormInputFieldValue = string | number;
-
-export type FormInputField = {
-  type: FormInputFieldType,
-  defaultValue?: FormInputFieldValue,
-  id?: string,
-  options?: Array<string>,
-  label?: string,
-};
+// export type FormInputField = {
+//   type: FormInputFieldType,
+//   defaultValue?: FormInputFieldValue,
+//   id?: string,
+//   options?: Array<string>,
+//   label?: string,
+// };
 
 class FormInput extends Component {
-  
-  props: FormInputField;
-  
-  static defaultProps = {
-    type: 'input',
-  };
-    
+
+  // props: FormInputField;
+
+  // static defaultProps = {
+  //   type: 'input',
+  // };
+
   getValue(): FormInputFieldValue {
     return 'value' in this.refs.input
       ? this.refs.input.value
@@ -43,7 +43,7 @@ class FormInput extends Component {
         return (
           <input
             {...common}
-            type="number" 
+            type="number"
             defaultValue={this.props.defaultValue || new Date().getFullYear()} />
         );
       case 'suggest':

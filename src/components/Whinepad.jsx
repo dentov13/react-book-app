@@ -1,28 +1,28 @@
 /* @flow */
 
+import Button from './Button';
 import CRUDActions from '../flux-imm/CRUDActions';
 import CRUDStore from '../flux-imm/CRUDStore';
-import Button from './Button';
 import Dialog from './Dialog';
 import Excel from './Excel';
 import Form from './Form';
+// import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import '../css/components/Whinepad.css';
 
-type State = {
-  addnew: boolean,
-  count: number,
-};
+// type State = {
+//   addnew: boolean,
+//   count: number,
+// };
 
 class Whinepad extends Component {
 
-  state: State;
+  // state: State;
 
   constructor() {
     super();
     this.state = {
       addnew: false,
-      count: CRUDStore.getCount()
+      count: CRUDStore.getCount(),
     };
 
     CRUDStore.addListener('change', () => {
@@ -30,54 +30,49 @@ class Whinepad extends Component {
         count: CRUDStore.getCount(),
       })
     });
-
-    this._preSearchData = null;
   }
-  
+
   shouldComponentUpdate(newProps: Object, newState: State): boolean {
-    return (
-      newState.addnew !== this.state.addnew || newState.count !== this.state.count
-    );
+    return newState.addnew !== this.state.addnew || newState.count !== this.state.count;
   }
 
   _addNewDialog() {
     this.setState({addnew: true});
   }
-  
+
   _addNew(action: string) {
     this.setState({addnew: false});
     if (action === 'confirm') {
       CRUDActions.create(this.refs.form.getData());
     }
   }
-  
+
   render() {
     return (
       <div className="Whinepad">
         <div className="WhinepadToolbar">
           <div className="WhinepadToolbarAdd">
-            <Button 
+            <Button
               onClick={this._addNewDialog.bind(this)}
               className="WhinepadToolbarAddButton">
               + add
             </Button>
           </div>
           <div className="WhinepadToolbarSearch">
-            <input 
-              placeholder={this.state.count === 1 
-                ? 'Search 1 record...' 
+            <input
+              placeholder={this.state.count === 1
+                ? 'Search 1 record...'
                 : `Search ${this.state.count} records...`
               }
               onChange={CRUDActions.search.bind(CRUDActions)}
-              onFocus={CRUDActions.startSearching.bind(CRUDActions)} 
-            />
+              onFocus={CRUDActions.startSearching.bind(CRUDActions)} />
           </div>
         </div>
         <div className="WhinepadDatagrid">
           <Excel />
         </div>
         {this.state.addnew
-          ? <Dialog 
+          ? <Dialog
               modal={true}
               header="Add new item"
               confirmLabel="Add"

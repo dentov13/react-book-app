@@ -2,27 +2,27 @@ import classNames from 'classnames';
 import React, {Component} from 'react';
 import '../css/components/Rating.css';
 
-type Props = {
-  defaultValue: number,
-  readonly: boolean,
-  max: number,
-};
-
-type State = {
-  rating: number,
-  tmpRating: number,
-};
+// type Props = {
+//   defaultValue: number,
+//   readonly: boolean,
+//   max: number,
+// };
+//
+// type State = {
+//   rating: number,
+//   tmpRating: number,
+// };
 
 class Rating extends Component {
-  
-  props: Props;
-  state: State;
-  
-  static defaultProps = {
-    defaultValue: 0,
-    max: 5,
-    readonly: false,
-  };
+
+  // props: Props;
+  // state: State;
+  //
+  // static defaultProps = {
+  //   defaultValue: 0,
+  //   max: 5,
+  //   readonly: false,
+  // };
 
   constructor(props) {
     super(props);
@@ -31,11 +31,11 @@ class Rating extends Component {
       tmpRating: props.defaultValue,
     };
   }
-  
+
   getValue() {
     return this.state.rating;
   }
-  
+
   setTemp(rating) {
     this.setState({tmpRating: rating});
   }
@@ -54,12 +54,12 @@ class Rating extends Component {
   componentWillReceiveProps(nextProps) {
     this.setRating(nextProps.defaultValue);
   }
- 
+
   render() {
     const stars = [];
     for (let i = 1; i <= this.props.max; i++) {
       stars.push(
-        <span 
+        <span
           className={i <= this.state.tmpRating ? 'RatingOn' : null}
           key={i}
           onClick={!this.props.readonly && this.setRating.bind(this, i)}
@@ -69,7 +69,7 @@ class Rating extends Component {
         </span>);
     }
     return (
-      <div 
+      <div
         className={classNames({
           'Rating': true,
           'RatingReadonly': this.props.readonly,
@@ -78,15 +78,15 @@ class Rating extends Component {
       >
         {stars}
         {this.props.readonly || !this.props.id
-          ? null 
-          : <input 
-              type="hidden" 
-              id={this.props.id} 
+          ? null
+          : <input
+              type="hidden"
+              id={this.props.id}
               value={this.state.rating} />
         }
       </div>
     );
-  }  
+  }
 }
 
 export default Rating
